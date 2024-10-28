@@ -304,7 +304,8 @@ function ft.calculate(ctx)
         ctx.range.ecol,
     }):lang()
 
-    return ft.get(lang, ctx.ctype) or ft.get(vim.bo.filetype, ctx.ctype) --[[ @as string ]]
+    ---NOTE: csharp parser is named as `c_sharp` but its filetype in neovim is `cs`
+    return ft.get(lang == 'c_sharp' and 'cs' or lang, ctx.ctype) or ft.get(vim.bo.filetype, ctx.ctype) --[[ @as string ]]
 end
 
 ---@export ft
